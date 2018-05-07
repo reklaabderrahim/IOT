@@ -4,29 +4,38 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 /**
  * {@link Person} désigne toutes les personnes qui ont le droit d'accéder aux locaux
  * @author arekla
  *
  */
+@Entity
 public class Person implements Serializable{
 	private static final long serialVersionUID = 1L;
-
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long personId;
 	private String personLastName;
 	private String personFirstName;
 	private Date personBirthDay;
 	private String personEmailAdress;
+	@OneToOne(mappedBy="person")
 	private User utilisateur;
-	private Collection<Group >groupes;
+	/*private Collection<Group >groupes;
 	private Collection<Device> devices;
-	private Collection<Agency> agencies;
+	private Collection<Agency> agencies;*/
 	
 	public Person() {
 		super();
 	}
 
-	public Person(String personLastName, String personFirstName, Date personBirthDay, String personEmailAdress) {
+	/*public Person(String personLastName, String personFirstName, Date personBirthDay, String personEmailAdress) {
 		super();
 		this.personLastName = personLastName;
 		this.personFirstName = personFirstName;
@@ -105,6 +114,6 @@ public class Person implements Serializable{
 	public void setAgencies(Collection<Agency> agencies) {
 		this.agencies = agencies;
 	}
-	
+	*/
 	
 }
